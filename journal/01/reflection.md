@@ -14,8 +14,8 @@ This reflection is open-format, so it can be whatever you like. Take this opport
 
 - What are you struggling with?
 
-  I understand and can follow what's going on during the lectures, but when I'm on my own I know what I have to do, but a hard time knowing knowing how to implement it properly without the days examples to reference. I definitely feel behind.
+  I understand and can follow what's going on during the lectures. But when I'm on my own I know what I have to do, but a hard time knowing knowing how to implement it properly without the days examples to reference. I definitely feel behind.
 
 - What would you count as a victory?
 
-  The frog game made bootstrap surprisingly easier to grasp.
+  The frog game made flexboxes surprisingly easier to understand
