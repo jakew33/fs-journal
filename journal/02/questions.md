@@ -1,57 +1,70 @@
 # Intro to JavaScript
-01. Which keywords are used to declare a variable in JavaScript?
 
-    > | ANSWER HERE |
+1.  Which keywords are used to declare a variable in JavaScript?
 
-02. What is the definition of a function?
+    > var, let, and const
 
-    > | ANSWER HERE |
+2.  What is the definition of a function?
 
-03. What are the `SOLID` principles?
+    > A function is a subprogramm designed to perform a specific task.
 
-    > | ANSWER HERE |
+3.  What are the `SOLID` principles?
 
-04. Given this array: How could you remove the `pineapple`?
+    > Single Responsibility a class should be having one and only one responsibility
+    > Open / Closed classes should be open for extension but closed for modification
+    > Liskov Substitution parent classes should be easily substituted with their child classes without blowing up the application
+    > Interface Segregation many client specific interfaces are better than one general interface
+    > Dependency Inversion classes should depend on abstraction but not on concretion
+
+4.  Given this array: How could you remove the `pineapple`?
 
     ```js
-    let fruit = ['apple', 'banana', 'pineapple', 'orange', 'strawberry']
+    let fruit = ["apple", "banana", "pineapple", "orange", "strawberry"];
     ```
 
-    > | ANSWER HERE |
+    > By using splice()
 
-05. Given these two objects: How could you add each to the others friends arrays?
+5.  Given these two objects: How could you add each to the others friends arrays?
 
     ```js
     let you = {
-        name: "You",
-        hair: true,
-        friends: []
-    }
+      name: "You",
+      hair: true,
+      friends: [],
+    };
     let them = {
-        name: "Them",
-        hair: false,
-        friends: []
-    }
+      name: "Them",
+      hair: false,
+      friends: [],
+    };
     ```
 
-    > | ANSWER HERE |
+    > you.friends.push(them);
+    > them.friends.push(you);
 
-06. Give an example of a JavaScript `Conditional`:
+6.  Give an example of a JavaScript `Conditional`:
 
-    > | ANSWER HERE |
+    > if () {
 
-07. What is the main difference between `parameters` and `arguments`?
+    } else {
 
-    > | ANSWER HERE |
+    }
 
-08. Instead of writing everything to the console, what is a better way to debug your code?
+7.  What is the main difference between `parameters` and `arguments`?
 
-    > | ANSWER HERE |
+    > A parameter is a named variable passed into a function, an argument is a value passed as input to a function when invoked.
 
-09. What is the difference between a `primitive` value and a `reference` value?
+8.  Instead of writing everything to the console, what is a better way to debug your code?
 
-    > | ANSWER HERE |
+    > Using the debugger built into Chrome
+
+9.  What is the difference between a `primitive` value and a `reference` value?
+
+    > A primative is data that is not an object, and has no methods or properties, if it's anything else than that it's a reference value.
 
 10. Demonstrate a loop that prints the numbers between -100 and 100?
 
-    > | ANSWER HERE |
+        > for (let i = -100; i <= 100; i++) {
+
+    console.log(i);
+    }
