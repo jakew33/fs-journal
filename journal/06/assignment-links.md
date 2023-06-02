@@ -1,6 +1,6 @@
 ## Afternoon Assignment Links
 
-* **[Repo](https://github.com/jakew33/<ASSIGNMENT_REPO>)**
-* **[Repo](https://github.com/jakew33/<ASSIGNMENT_REPO>)**
-* **[Repo](https://github.com/jakew33/<ASSIGNMENT_REPO>)**
-* **[Repo](https://github.com/jakew33/<ASSIGNMENT_REPO>)**
+* **[Playground](https://github.com/jakew33/vue-playground)**
+* **[GregsList](https://github.com/jakew33/gregslistVue)**
+* **[Gifted](https://github.com/jakew33/giftedVue)**
+* **[Blogger](https://github.com/Nasery123/Blogger)**
