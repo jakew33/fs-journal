@@ -1176,3 +1176,185 @@ class CollaboratorsService{
 }
 
 export const collaboratorsService = new CollaboratorsService()
+
+
+
+
+
+
+Sockets 
+--------------
+
+fresh project
+
+the first thing you want to do/ change useSockets to true
+sockets are fancy way to talk to a server 
+
+AuthHandler
+SocketService
+.emit is how you send messages back and forth
+
+check ws tab in network tab
+
+in the backend
+copy and paste the testHandler, paste it into handler folder and rename it to LightHandler
+
+in LightHandler.js
+
+const lightState = {
+  on: false
+}
+
+.on('GET_LIGHT_STATE', this.getLightState)
+
+async getLightState() {
+  this.socket.emit('LIGHT_STATE', lightState)
+}
+
+in the frontend in SocketService.js
+
+.on('LIGHT_STATE', this.setLightState)
+
+setLightState(lightState){
+  AppState.light = lightState
+}
+
+in AppState
+
+light: null
+
+in the homePage
+
+i.mdi.mdi-lightbulb-variant-outline 
+
+Sockets Pt.2
+-----------------
+
+in channelsController in server side
+
+add in async create,
+ socketProvider.message("s:creating:channel", channel)
+
+ in client side
+
+ in socket service...
+ .on("s:creating:channel", this.creatingChannel)
+
+
+ in onError(e) add...
+
+ creatingChannel(payload) {
+  let newChannel = new Channel (payload)
+  logger.log("new channel", payload)
+  if(!payload) {
+    throw new Error("Something went wrong")
+  } else {
+    if(AppState.account.id != newChannel.creatorId) {
+    Pop.toast(`${newChannel.name} has been created`)
+    }
+    AppState.channels.push(newChannel)
+  }
+ }
+
+
+ in server side/MessagesController
+
+ in async create add under let message...
+ socketProvider.messageRoom(room, eventName, payload)
+  socketProvider.messageRoom(message.roomId.toString(),
+"s:creating:message", message
+);
+
+back in the SocketService
+
+add another .on("s:creatingmessage", this.creatingMessage)
+
+
+creatingMessage(payload) {
+  logger.log('creating message payload')
+  let message = new Message(payload)
+  AppState.messages.push(message)
+}
+
+in ChannelPage.vue
+
+under onMounted add...
+
+watchEffect(() => {
+  route.params.id
+
+})
+
+router.beforeEach((to, from) => {
+  logger.log('[TO]', to, "[FROM]", from)
+  if(from.name == "Channel") {
+    leaveRoom(from.params.id)
+  }
+})
+
+function leaveRoom(roomId) {
+  try {
+    let payload = {roomId: roomId}
+    socketService.emit("c:leaving:room", payload)
+  } catch (error)
+  logger.error((error))
+  Pop.error(('error')), error.message
+}
+
+in RoomHandler.js (it's actually TestHandler) under constructor...
+
+add another .on ("c:leaving:room", this.leavingRoom)
+
+
+leavingRoom(payload){
+  if(!payload.roomId) {
+    this.socket.emit("error", {error: "please provide a room Id."})
+    return;
+  }
+  this.socket.leave(payload.roomId);
+  this.socket.to(payload.roomId).emit("s:leaving:room", this.user)
+} 
+
+back in client side in socketsservice
+
+leavingRoom(payload) {
+  if(payload && AppState.account.id != payload.id) {
+    pop.toast(`yaddah yaddah`)
+  }
+
+}
+
+function joinRoom() {
+  try {
+    let payload = {roomId : roomId}
+    socketService.emit("c:joining:room", payload)
+  } catch (error) {
+
+  }
+}
+
+in roomHandler
+
+joiningRoom(payload) {
+  if(payload.roomId) {
+    this.socket.emit("error", {
+      error: "wrong"
+    })
+    return;
+  }
+  this.socket.join(payload.roomId)
+  this.socket.to(payload.roomId).emit("s:joining:room", this.profile)
+}
+
+
+in server/socketService
+
+add .om("s:joiningRoom")
+
+joiningRoom(payload) {
+  if(payload && AppState.account.id != payload.id){
+    
+  }
+}
+
+
